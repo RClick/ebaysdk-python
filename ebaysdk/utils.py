@@ -151,7 +151,7 @@ def dict2xml(root):
                     attrs_sp = ' '
 
                 xml = '%(xml)s<%(tag)s%(attrs_sp)s%(attrs)s>%(value)s</%(tag)s>' % \
-                    {'tag': key, 'xml': xml, 'attrs': ' '.join(attrs), 
+                    {'tag': smart_encode(key), 'xml': xml, 'attrs': ' '.join(attrs),
                      'value': smart_encode(value), 'attrs_sp': attrs_sp}                          
 
             elif isinstance(root[key], list):
@@ -169,13 +169,13 @@ def dict2xml(root):
                         attrs_sp = ' '
 
                     xml = '%(xml)s<%(tag)s%(attrs_sp)s%(attrs)s>%(value)s</%(tag)s>' % \
-                        {'xml': xml, 'tag': key, 'attrs': ' '.join(attrs),
+                        {'xml': xml, 'tag': smart_encode(key), 'attrs': ' '.join(attrs),
                          'value': smart_encode(value), 'attrs_sp': attrs_sp}
  
             else:
                 value = root[key]
                 xml = '%(xml)s<%(tag)s>%(value)s</%(tag)s>' % \
-                    {'xml': xml, 'tag': key, 'value': smart_encode(value)}
+                    {'xml': xml, 'tag': smart_encode(key), 'value': smart_encode(value)}
 
     elif isinstance(root, str) or isinstance(root, int) \
         or isinstance(root, unicode) or isinstance(root, long) \
